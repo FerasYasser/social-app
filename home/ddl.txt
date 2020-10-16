@@ -1,0 +1,50 @@
+create DATABASE registration;
+    USE registration;
+
+CREATE TABLE `users` (
+
+  `email` varchar(225) NOT NULL,
+  `username` varchar(225) NOT NULL,
+  `password` blob NOT NULL  ,
+  `birthdate` date NOT NULL,
+  `phone` int (11),
+`gender` varchar(225),
+`hometown` varchar(225) ,
+`aboutme` varchar(225) ,
+`mstatus` varchar(225),
+`img` blob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`email`);
+  CREATE TABLE `friends` (
+  `id` int(11) ,
+    `email1` varchar(225) NOT NULL,
+    `email2` varchar(225) NOT NULL,
+    `relation` varchar(225),
+FOREIGN KEY(email1) REFERENCES users(email)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  ALTER TABLE `friends`
+    ADD PRIMARY KEY (`id`);
+
+
+    ALTER TABLE `friends`
+      MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+    COMMIT;
+
+    CREATE TABLE `pic` (
+    `pic_id` int(11) ,
+      `email` varchar(225) NOT NULL,
+      `caption` varchar(225),
+      `pic` blob,
+      `date`  timestamp NOT NULL DEFAULT current_timestamp(),
+      `private` varchar(255) default null,
+    FOREIGN KEY(email) REFERENCES users(email)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    ALTER TABLE `pic`
+      ADD PRIMARY KEY (`pic_id`);
+
+
+      ALTER TABLE `pic`
+        MODIFY `pic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+      COMMIT;
+
